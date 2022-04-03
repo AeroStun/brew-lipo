@@ -1,0 +1,6 @@
+brew-lipo is a simple and dirty tool to get fat macOS development binaries for your Homebrew bottle-installed formulaes
+
+Usage:
+    ./brew-lipo.sh $formulae
+
+
