@@ -16,7 +16,16 @@
 brew_prefix=$(brew --prefix)
 
 formulae=$1
+if [ -z "$formulae" ]; then
+  echo 'Error: no formulae specified'
+  exit -1
+fi
+
 formulae_prefix=$(brew --prefix $formulae)
+if [ -z "$formulae_prefix" ]; then
+  exit -1 # On error, brew will already have printed to stderr
+fi
+
 native_ark=$(brew fetch $formulae | grep "Homebrew/downloads" | grep 'tar.gz' | awk -F": " '{ print $NF }')
 native_tag=$(basename $native_ark | sed -e 's/\(.*\)\.bottle.*/\1/' -e 's/.*\.\(.*\)$/\1/')
 
